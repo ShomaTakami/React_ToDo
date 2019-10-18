@@ -16,23 +16,7 @@
   border: 1px solid red;
 }
 
-.list {
-  background-color: #fff;
-  width: 75%;
-  height: 75%;
-  margin: 25px auto;
+.app {
   text-align: center;
-}
-
-.container {
-  cursor: pointer;
-  display: block;
-}
-.container input {
-  vertical-align: middle;
-}
-
-.userInput {
-  text-align: center;
-  border: 1px solid red;
+  width: 300px;
 }

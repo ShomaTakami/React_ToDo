@@ -3,8 +3,8 @@ import React from "react";
 class Header extends React.Component {
   render() {
     return (
-      <div className='header'>
-        <p>{this.props.children}</p>
+      <div className='header' style={{ textAlign: "center" }}>
+        <h1>{this.props.children}</h1>
       </div>
     );
   }

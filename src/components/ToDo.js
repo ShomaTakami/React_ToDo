@@ -1,28 +1,48 @@
-import React from "react";
+import React, { Component } from "react";
+import ToDoCreate from "./todocreate";
+import ToDoList from "./todolist";
 
-class Todo extends React.Component {
+class ToDo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todo: [
-        { id: 1, name: "食材を買いに行く" },
-        { id: 2, name: "チャーハンを調理する" },
-        { id: 3, name: "チャーハンを盛り付ける" }
-      ]
+      todo: [],
+      max_id: 0
     };
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
+
+  handleClick(value) {
+    let id = this.state.max_id;
+    let todo = this.state.todo;
+    todo.push({ id: id + 1, name: value });
+
+    this.setState({
+      todo: todo,
+      max_id: id + 1
+    });
+  }
+
+  handleRemove(e) {
+    let cur = this.state.todo;
+    let id = Number(e.currentTarget.getAttribute("data-id"));
+    let todo = cur.filter(i => i.id !== id);
+
+    this.setState({
+      todo: todo
+    });
+  }
+
   render() {
     return (
-      <div className='list'>
-        {this.state.todo.map(item => (
-          <label className='container' key={item.id}>
-            <input type='checkbox' />
-            {item.name}
-          </label>
-        ))}
+      <div>
+        <ToDoCreate onClick={this.handleClick} />
+        <ToDoList data={this.state.todo} remove={this.handleRemove} />
       </div>
     );
   }
 }
 
-export default Todo;
+export default ToDo;
